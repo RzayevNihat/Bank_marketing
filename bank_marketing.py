@@ -1,7 +1,4 @@
 from PIL import Image
-import sklearn
-from sklearn.preprocessing import LabelEncoder
-
 import plotly.express as px
 import streamlit as st
 import seaborn as sns
@@ -9,6 +6,7 @@ import pandas as pd
 import warnings
 import pickle
 import time
+from sklearn.preprocessing import LabelEncoder
 
 warnings.filterwarnings(action='ignore')
 
