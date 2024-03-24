@@ -6,9 +6,7 @@ import numpy as np
 import time
 from sklearn.preprocessing import LabelEncoder
 import sklearn
-warnings.filterwarnings(action='ignore')
 
-warnings.filterwarnings(action='ignore')
 
 df=pd.read_csv('bank2.csv')
 
