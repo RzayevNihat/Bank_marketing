@@ -119,7 +119,7 @@ Quandl==3.7.0
 requests==2.27.1
 retrying==1.3.3
 rich==13.5.2
-scikit-learn==1.2.2
+scikit-learn==1.4.0
 scikit-optimize==0.9.0
 scipy==1.8.1
 seaborn==0.12.1
