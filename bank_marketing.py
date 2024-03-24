@@ -1,6 +1,6 @@
 from PIL import Image
-import plotly.express as px
 import streamlit as st
+import plotly.express as px
 import seaborn as sns
 import pandas as pd
 import warnings
