@@ -181,7 +181,7 @@ savings account with a fixed term and interest rate.
                        'previous':[previous],
                        'emp_var_rate':[emp_var_rate],
                        'cons_price_idx':[cons_price_idx],
-                       'euribor_3m':[euribor_3m]},columns=model.feature_names_in_,index=[0])
+                       'euribor_3m':[euribor_3m]},columns=model.feature_names_in_)
     
     with open(file='bank_model.pickle',mode='rb') as pickled_model:
         model=pickle.load(file=pickled_model) 
