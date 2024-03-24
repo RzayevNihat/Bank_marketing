@@ -166,8 +166,7 @@ savings account with a fixed term and interest rate.
     cons_price_idx = int(cons_price_idx)
     euribor_3m = float(euribor_3m)
     
-    
-       input_features = pd.DataFrame({'job_categories':[job_categories_encoded],
+    input_features = pd.DataFrame({'job_categories':[job_categories_encoded],
                        'day_of_week':[day_of_week_encoded],
                        'marital':[marital_encoded],
                        'education':[education_encoded],
