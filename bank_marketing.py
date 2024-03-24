@@ -10,13 +10,6 @@ import sklearn
 
 df=pd.read_csv('bank2.csv')
 
-st.dataframe(df)
-    
-   
-    
-bank_image=Image.open(fp='bank_marketing_image.jpg')
-
-
 
 label_encoder = LabelEncoder()
 
@@ -51,7 +44,6 @@ housing_encoding = label_encoder.fit_transform(df['housing'])
 housing_mapping = dict(zip(df['housing'], housing_encoding))
 
 
-st.dataframe(df)
 rep_edu={'basic_4y':'Basic 4 year',
          'high_school':'High school',
          'basic_6y':'Basic 6 years',
