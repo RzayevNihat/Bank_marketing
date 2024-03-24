@@ -5,6 +5,7 @@ from PIL import Image
 import numpy as np
 import time
 from sklearn.preprocessing import LabelEncoder
+import sklearn
 warnings.filterwarnings(action='ignore')
 
 warnings.filterwarnings(action='ignore')
