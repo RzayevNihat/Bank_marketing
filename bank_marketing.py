@@ -167,7 +167,7 @@ savings account with a fixed term and interest rate.
     euribor_3m = float(euribor_3m)
     
     
-    input_features = pd.DataFrame({'job_categories':[job_categories_encoded],
+       input_features = pd.DataFrame({'job_categories':[job_categories_encoded],
                        'day_of_week':[day_of_week_encoded],
                        'marital':[marital_encoded],
                        'education':[education_encoded],
@@ -177,12 +177,12 @@ savings account with a fixed term and interest rate.
                        'p_outcome':[p_outcome_encoded],
                        'housing':[housing_encoded],
                        'loan':[loan_encoded],
-                       'duration':duration,
-                       'campaign':campaign,
-                       'previous':previous,
-                       'emp_var_rate':emp_var_rate,
-                       'cons_price_idx':cons_price_idx,
-                       'euribor_3m':euribor_3m},columns=model.feature_names_in_,index=[0])
+                       'duration':[duration],
+                       'campaign':[campaign],
+                       'previous':[previous],
+                       'emp_var_rate':[emp_var_rate],
+                       'cons_price_idx':[cons_price_idx],
+                       'euribor_3m':[euribor_3m]},columns=model.feature_names_in_,index=[0])
     
     with open(file='bank_model.pickle',mode='rb') as pickled_model:
         model=pickle.load(file=pickled_model) 
