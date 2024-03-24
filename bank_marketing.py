@@ -7,6 +7,7 @@ import numpy as np
 import time
 from sklearn.preprocessing import LabelEncoder
 import sklearn
+import joblib
 
 
 df=pd.read_csv('bank2.csv')
@@ -197,8 +198,8 @@ savings account with a fixed term and interest rate.
                        
                        
     
-    with open(file='bank_model.pickle',mode='rb') as pickled_model:
-        model=pickle.load(file=pickled_model) 
+    with open('bank_model.pickle', 'rb') as model_file:
+         model = joblib.load(model_file) 
 
 
     st.markdown('***')
