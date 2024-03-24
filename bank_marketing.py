@@ -1,4 +1,5 @@
 from PIL import Image
+import sklearn
 from sklearn.preprocessing import LabelEncoder
 
 import plotly.express as px
