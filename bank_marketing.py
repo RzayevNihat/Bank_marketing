@@ -151,7 +151,7 @@ savings account with a fixed term and interest rate.
          euribor_3m=st.slider(label='Euribor 3-Month Rate (Daily)',min_value=df.euribor_3m.min(),max_value=df.euribor_3m.max(),value=4.)
     with cons_conf_idx:
          cons_conf_idx=st.slider(label='Euribor 3-Month Rate (Daily)',min_value=df.cons_conf_idx.min(),max_value=df.cons_conf_idx.max())
-    nr_employed=st.slider(label='nr employed',min_value=df.nr_employed.min(),max_value=df.nr_employed.max()                   
+    nr_employed=st.slider(label='nr employed',min_value=df.nr_employed.min(),max_value=df.nr_employed.max())                   
     marital_encoded = marital_mapping.get(marital, 0)
     education_encoded = education_mapping.get(education, 0)
     age_categories_encoded = age_categories_mapping.get(age_categories, 0)
