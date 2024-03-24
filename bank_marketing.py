@@ -1,12 +1,11 @@
-from PIL import Image
 import streamlit as st
-import plotly.express as px
-import seaborn as sns
 import pandas as pd
-import warnings
 import pickle
+from PIL import Image
+import numpy as np
 import time
 from sklearn.preprocessing import LabelEncoder
+warnings.filterwarnings(action='ignore')
 
 warnings.filterwarnings(action='ignore')
 
