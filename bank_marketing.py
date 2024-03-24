@@ -1,4 +1,3 @@
-from sklearn.base import BaseEstimator,TransformerMixin
 from PIL import Image
 from sklearn.preprocessing import LabelEncoder
 
