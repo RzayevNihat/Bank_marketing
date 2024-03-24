@@ -100,14 +100,15 @@ savings account with a fixed term and interest rate.
         cons_price_idx=st.selectbox(label='Consumer Price Index',options=df['cons_price_idx'].sort_values().unique())
             
 
-    day_of_week,p_outcome,job_categories,age_categories=st.columns(spec=[1,1,1,1])
+    day_of_week,p_outcome,job_categories,age_categories,p_days=st.columns(spec=[1,1,1,1,1])
     
     with day_of_week:
         day_of_week=st.selectbox(label='Last Contact Day',options=df['day_of_week'].str.capitalize().unique())
     
     with p_outcome:
         p_outcome=st.selectbox(label='Previous Outcome',options=df['p_outcome'].str.capitalize().unique())                   
-                           
+    with p_days:                   
+        p_days=st.selectbox(label='Previous Day',options=df['p_days'].unique())
     
     with job_categories:
         job_categories=st.selectbox(label='Job of Customer',options=df['job'].str.capitalize().unique())
@@ -164,21 +165,26 @@ savings account with a fixed term and interest rate.
     previous = int(previous)
     emp_var_rate = int(emp_var_rate)
     cons_price_idx = int(cons_price_idx)
+    p_days=int(p_days)
     euribor_3m = float(euribor_3m)
     
     input_features = pd.DataFrame({'job_categories':[job_categories_encoded],
-                       'day_of_week':[day_of_week_encoded],
                        'marital':[marital_encoded],
                        'education':[education_encoded],
-                       'contact':[contact_encoded],
-                       'month':[month_encoded],
-                       'age_categories':[age_categories_encoded],
-                       'p_outcome':[p_outcome_encoded],
                        'housing':[housing_encoded],
                        'loan':[loan_encoded],
+                       'contact':[contact_encoded],
+                       'month':[month_encoded],
+                       'day_of_week':[day_of_week_encoded],
                        'duration':[duration],
                        'campaign':[campaign],
+                       'p_days':[p_days],
                        'previous':[previous],
+                       'age_categories':[age_categories_encoded],
+                       'p_outcome':[p_outcome_encoded],
+                       
+                       
+                       
                        'emp_var_rate':[emp_var_rate],
                        'cons_price_idx':[cons_price_idx],
                        'euribor_3m':[euribor_3m]},columns=model.feature_names_in_)
