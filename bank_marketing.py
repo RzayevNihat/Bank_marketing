@@ -33,8 +33,8 @@ p_outcome_mapping = dict(zip(df['p_outcome'], p_outcome_encoding))
 age_categories_encoding = label_encoder.fit_transform(df['age_categories'])
 age_categories_mapping = dict(zip(df['age_categories'], age_categories_encoding))
 
-job_categories_encoding = label_encoder.fit_transform(df['job'])
-job_categories_mapping = dict(zip(df['job'], job_categories_encoding))
+job_encoding = label_encoder.fit_transform(df['job'])
+job_mapping = dict(zip(df['job'], job_encoding))
 
 contact_encoding = label_encoder.fit_transform(df['contact'])
 contact_mapping = dict(zip(df['contact'], contact_encoding))
@@ -110,8 +110,8 @@ savings account with a fixed term and interest rate.
         p_outcome=st.selectbox(label='Previous Outcome',options=df['p_outcome'].str.capitalize().unique())                   
                            
     
-    with job_categories:
-        job_categories=st.selectbox(label='Job of Customer',options=df['job'].str.capitalize().unique())
+    with job:
+        job=st.selectbox(label='Job of Customer',options=df['job'].str.capitalize().unique())
 
     with age_categories:
         age_categories=st.selectbox(label='Category of age',options=df['age_categories'].unique())
@@ -154,7 +154,7 @@ savings account with a fixed term and interest rate.
     marital_encoded = marital_mapping.get(marital, 0)
     education_encoded = education_mapping.get(education, 0)
     age_categories_encoded = age_categories_mapping.get(age_categories, 0)
-    job_categories_encoded = job_categories_mapping.get(job_categories, 0)
+    job_encoded = job_categories_mapping.get(job, 0)
     month_encoded = month_mapping.get(month, 0)
     p_outcome_encoded = p_outcome_mapping.get(p_outcome, 0)
     day_of_week_encoded = day_of_week_mapping.get(day_of_week, 0)
@@ -169,7 +169,7 @@ savings account with a fixed term and interest rate.
     euribor_3m = float(euribor_3m)
     
     
-    input_features = pd.DataFrame({'job_categories':[job_categories_encoded],
+    input_features = pd.DataFrame({'job':[job_encoded],
                        'marital':[marital_encoded],
                        'education':[education_encoded],
                        'housing':[housing_encoded],
