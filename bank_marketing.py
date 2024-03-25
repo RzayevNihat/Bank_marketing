@@ -101,7 +101,7 @@ savings account with a fixed term and interest rate.
         cons_price_idx=st.selectbox(label='Consumer Price Index',options=df['cons_price_idx'].sort_values().unique())
             
 
-    day_of_week,p_outcome,job_categories,age_categories=st.columns(spec=[1,1,1,1])
+    day_of_week,p_outcome,job,age_categories=st.columns(spec=[1,1,1,1])
     
     with day_of_week:
         day_of_week=st.selectbox(label='Last Contact Day',options=df['day_of_week'].str.capitalize().unique())
@@ -154,7 +154,7 @@ savings account with a fixed term and interest rate.
     marital_encoded = marital_mapping.get(marital, 0)
     education_encoded = education_mapping.get(education, 0)
     age_categories_encoded = age_categories_mapping.get(age_categories, 0)
-    job_encoded = job_categories_mapping.get(job, 0)
+    job_encoded = job_mapping.get(job, 0)
     month_encoded = month_mapping.get(month, 0)
     p_outcome_encoded = p_outcome_mapping.get(p_outcome, 0)
     day_of_week_encoded = day_of_week_mapping.get(day_of_week, 0)
