@@ -11,7 +11,7 @@ df=pd.read_csv('bank_marketing.csv')
 with open(file='bank_model_predictor.pickle',mode='rb') as pickled_model:
     model=pickle.load(file=pickled_model)    
     
-st.dataframe(df)
+
 
 label_encoder = LabelEncoder()
 
@@ -121,12 +121,8 @@ savings account with a fixed term and interest rate.
     with emp_var_rate:
         emp_var_rate=st.selectbox(label='Employment Variation Rate',options=df['emp_var_rate'].sort_values().unique())
 
-
-    
     with previous:
-        previous=st.selectbox(label='Number of Previous',options=df['previous'].unique())
-    st.write('\n')        
-    #st.markdown(body='***')
+        previous=st.selectbox(label='Number of Previous',options=df['previous'].unique())  
     
     with duration:
             duration=st.number_input(label='Last Contact Duration',min_value=df.duration.min(),max_value=df.duration.max(),value=int(df.duration.mean()))
