@@ -11,7 +11,6 @@ df=pd.read_csv('bank3.csv')
 with open(file='bank_model3.pickle',mode='rb') as pickled_model:
     model=pickle.load(file=pickled_model)    
     
-st.dataframe(df)
 
 label_encoder = LabelEncoder()
 
