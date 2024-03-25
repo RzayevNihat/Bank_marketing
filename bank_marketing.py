@@ -101,13 +101,13 @@ savings account with a fixed term and interest rate.
         cons_price_idx=st.selectbox(label='Consumer Price Index',options=df['cons_price_idx'].sort_values().unique())
             
 
-    day_of_week,p_outcome,job,age_categories=st.columns(spec=[1,1,1,1])
+    day_of_week,p_days,job,age_categories=st.columns(spec=[1,1,1,1])
     
     with day_of_week:
         day_of_week=st.selectbox(label='Last Contact Day',options=df['day_of_week'].str.capitalize().unique())
     
-    with p_outcome:
-        p_outcome=st.selectbox(label='Previous Outcome',options=df['p_outcome'].str.capitalize().unique())                   
+    with p_days:
+        p_days=st.selectbox(label='Contact Type',options=df['p_days'].unique())               
                            
     
     with job:
@@ -116,18 +116,7 @@ savings account with a fixed term and interest rate.
     with age_categories:
         age_categories=st.selectbox(label='Category of age',options=df['age_categories'].unique())
     st.markdown('***')
-    housing,loan,contact,p_days=st.columns(spec=[1,1,1,1])
-    with housing:                          
-        housing=st.radio(label='The Customer has a Housing Loan',options=df['housing'].unique(),horizontal=True)
     
-    with loan:                         
-        loan=st.radio(label='The customer has a personal loan',options=df['loan'].unique(),horizontal=True) 
-        
-    with contact:
-        contact=st.radio(label='Contact Type',options=df['contact'].str.capitalize().unique())
-    with p_days:
-        p_days=st.selectbox(label='Contact Type',options=df['p_days'].unique())
-    st.markdown('***')
     
     emp_var_rate,previous,duration,campaign=st.columns(spec=[1,1,1,1])
     with emp_var_rate:
@@ -146,11 +135,26 @@ savings account with a fixed term and interest rate.
 
     with campaign:
         campaign=st.number_input(label='Number of Campaign ',min_value=df.campaign.min(),max_value=df.campaign.max(),value=int(df.campaign.mean()))
+    st.markdown('***')
+    housing,loan,contact,p_outcome=st.columns(spec=[1,1,1,1])
+    with housing:                          
+        housing=st.radio(label='Housing Loan',options=df['housing'].unique(),horizontal=True)
+    
+    with loan:                         
+        loan=st.radio(label='Personal loan',options=df['loan'].unique(),horizontal=True) 
+        
+    with contact:
+        contact=st.radio(label='Contact Type',options=df['contact'].str.capitalize().unique(),horizontal=True)
+    with p_outcome:
+        p_outcome=st.radio(label='Previous Outcome',options=df['p_outcome'].str.capitalize().unique(),horizontal=True)
 
+    st.markdown('***')
                        
-    euribor_3m=st.slider(label='Euribor 3-Month Rate (Daily)',min_value=df.euribor_3m.min(),max_value=df.euribor_3m.max(),value=4.)
-    cons_conf_idx=st.slider(label='Euribor 3-Month Rate (Daily)',min_value=df.cons_conf_idx.min(),max_value=df.cons_conf_idx.max())                                  
-    nr_employed=st.slider(label='Euribor 3-Month Rate (Daily)',min_value=df.nr_employed.min(),max_value=df.nr_employed.max())                   
+    euribor_3m=st.slider(label='Euribor 3-Month Rate (Daily)',min_value=df.euribor_3m.min(),max_value=df.euribor_3m.max())
+    
+    cons_conf_idx=st.slider(label='Monthly Consumer Confidence Index',min_value=df.cons_conf_idx.min(),max_value=df.cons_conf_idx.max())                                  
+    nr_employed=st.slider(label='Quarterly Number of Employees',min_value=df.nr_employed.min(),max_value=df.nr_employed.max())                   
+    
     marital_encoded = marital_mapping.get(marital, 0)
     education_encoded = education_mapping.get(education, 0)
     age_categories_encoded = age_categories_mapping.get(age_categories, 0)
@@ -232,6 +236,7 @@ with sidebar:
     st.markdown(body = '- **emp_var_rate** - Employment variation rate - quarterly indicator (numeric)')
     st.markdown(body = '- **cons_price_idx** - Consumer price index - monthly indicator (numeric)')                  
     st.markdown(body = '- **euribor_3m** - Euribor 3 months rate - daily indicator (numeric)')                   
-                       
+    st.markdown(body='- **cons_conf_idx** - Consumer confidence index - monthly indicator (numeric)')
+    st.markdown(body='-	**nr_employe**: number of employees - quarterly indicator (numeric)')               
                        
                       
