@@ -190,7 +190,7 @@ savings account with a fixed term and interest rate.
                        'cons_conf_idx':[cons_conf_idx],
                        'euribor_3m':[euribor_3m],
                        'nr_employed':[nr_employed],
-                       'age_categories':[age_categories_encoded]},index=[0],columns=model.feature_names_in_)
+                       'age_categories':[age_categories_encoded]},index=[0])
     
 
 
