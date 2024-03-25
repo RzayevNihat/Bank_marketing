@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import pickle
-from PIL import Image
 import numpy as np
 import time
 from sklearn.preprocessing import LabelEncoder
@@ -12,8 +11,6 @@ df=pd.read_csv('bank2.csv')
 with open(file='bank_model.pickle',mode='rb') as pickled_model:
     model=pickle.load(file=pickled_model)    
     
-bank_image=Image.open(fp='bank_marketing_image.jpg')
-
 st.dataframe(df)
 
 label_encoder = LabelEncoder()
