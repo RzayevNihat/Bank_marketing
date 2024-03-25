@@ -1,17 +1,20 @@
 import streamlit as st
-import plotly.express as px
 import pandas as pd
 import pickle
 from PIL import Image
 import numpy as np
 import time
 from sklearn.preprocessing import LabelEncoder
-import sklearn
-import joblib
-
-
+import plotly.express as px
 df=pd.read_csv('bank2.csv')
 
+    
+with open(file='bank_model.pickle',mode='rb') as pickled_model:
+    model=pickle.load(file=pickled_model)    
+    
+bank_image=Image.open(fp='bank_marketing_image.jpg')
+
+st.dataframe(df)
 
 label_encoder = LabelEncoder()
 
@@ -63,7 +66,7 @@ sidebar=st.sidebar.container()
 
 with interface:
     st.title(body='Bank Marketing')
-    
+    st.markdown('***')
     
     st.header(body='Project Description')
     
@@ -101,15 +104,14 @@ savings account with a fixed term and interest rate.
         cons_price_idx=st.selectbox(label='Consumer Price Index',options=df['cons_price_idx'].sort_values().unique())
             
 
-    day_of_week,p_outcome,job_categories,age_categories,p_days=st.columns(spec=[1,1,1,1,1])
+    day_of_week,p_outcome,job_categories,age_categories=st.columns(spec=[1,1,1,1])
     
     with day_of_week:
         day_of_week=st.selectbox(label='Last Contact Day',options=df['day_of_week'].str.capitalize().unique())
     
     with p_outcome:
         p_outcome=st.selectbox(label='Previous Outcome',options=df['p_outcome'].str.capitalize().unique())                   
-    with p_days:                   
-        p_days=st.selectbox(label='Previous Day',options=df['p_days'].unique())
+                           
     
     with job_categories:
         job_categories=st.selectbox(label='Job of Customer',options=df['job'].str.capitalize().unique())
@@ -117,7 +119,7 @@ savings account with a fixed term and interest rate.
     with age_categories:
         age_categories=st.selectbox(label='Category of age',options=df['age_categories'].unique())
     st.markdown('***')
-    housing,loan,contact=st.columns(spec=[1,1,1])
+    housing,loan,contact,p_days=st.columns(spec=[1,1,1,1])
     with housing:                          
         housing=st.radio(label='The Customer has a Housing Loan',options=df['housing'].unique(),horizontal=True)
     
@@ -126,7 +128,8 @@ savings account with a fixed term and interest rate.
         
     with contact:
         contact=st.radio(label='Contact Type',options=df['contact'].str.capitalize().unique())
-    
+    with p_days:
+        p_days=st.selectbox(label='Contact Type',options=df['p_days'].unique())
     st.markdown('***')
     
     emp_var_rate,previous,duration,campaign=st.columns(spec=[1,1,1,1])
@@ -147,12 +150,10 @@ savings account with a fixed term and interest rate.
     with campaign:
         campaign=st.number_input(label='Number of Campaign ',min_value=df.campaign.min(),max_value=df.campaign.max(),value=int(df.campaign.mean()))
 
-    euribor_3m,cons_conf_idx=st.columns(spec=[1,1])
-    with euribor_3m:
-         euribor_3m=st.slider(label='Euribor 3-Month Rate (Daily)',min_value=df.euribor_3m.min(),max_value=df.euribor_3m.max(),value=4.)
-    with cons_conf_idx:
-         cons_conf_idx=st.slider(label='Euribor 3-Month Rate (Daily)',min_value=df.cons_conf_idx.min(),max_value=df.cons_conf_idx.max())
-    nr_employed=st.slider(label='nr employed',min_value=df.nr_employed.min(),max_value=df.nr_employed.max())                   
+                       
+    euribor_3m=st.slider(label='Euribor 3-Month Rate (Daily)',min_value=df.euribor_3m.min(),max_value=df.euribor_3m.max(),value=4.)
+    cons_conf_idx=st.slider(label='Euribor 3-Month Rate (Daily)',min_value=df.cons_conf_idx.min(),max_value=df.cons_conf_idx.max())                                  
+    nr_employed=st.slider(label='Euribor 3-Month Rate (Daily)',min_value=df.nr_employed.min(),max_value=df.nr_employed.max())                   
     marital_encoded = marital_mapping.get(marital, 0)
     education_encoded = education_mapping.get(education, 0)
     age_categories_encoded = age_categories_mapping.get(age_categories, 0)
@@ -168,10 +169,9 @@ savings account with a fixed term and interest rate.
     previous = int(previous)
     emp_var_rate = int(emp_var_rate)
     cons_price_idx = int(cons_price_idx)
-    p_days=int(p_days)
     euribor_3m = float(euribor_3m)
-    cons_conf_idx=float(cons_conf_idx)
-    nr_employed=float(nr_employed)    
+    
+    
     input_features = pd.DataFrame({'job_categories':[job_categories_encoded],
                        'marital':[marital_encoded],
                        'education':[education_encoded],
@@ -183,23 +183,15 @@ savings account with a fixed term and interest rate.
                        'duration':[duration],
                        'campaign':[campaign],
                        'p_days':[p_days],
-                       'p_outcome':[p_outcome_encoded],
                        'previous':[previous],
+                       'p_outcome':[p_outcome_encoded],
+                       'emp_var_rate':[emp_var_rate],
                        'cons_price_idx':[cons_price_idx],
                        'cons_conf_idx':[cons_conf_idx],
                        'euribor_3m':[euribor_3m],
                        'nr_employed':[nr_employed],
-                       'emp_var_rate':[emp_var_rate],
-                       'age_categories':[age_categories_encoded]},index=[0])
-                       
-                       
-                       
-                       
-                       
-                       
+                       'age_categories':[age_categories_encoded]},index=[0],columns=model.feature_names_in_)
     
-    with open('bank_model.pickle', 'rb') as model_file:
-         model = joblib.load(model_file) 
 
 
     st.markdown('***')
@@ -238,4 +230,4 @@ with sidebar:
     st.markdown(body = '- **euribor_3m** - Euribor 3 months rate - daily indicator (numeric)')                   
                        
                        
-                       
+                      
