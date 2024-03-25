@@ -190,7 +190,6 @@ savings account with a fixed term and interest rate.
                        'euribor_3m':[euribor_3m],
                        'nr_employed':[nr_employed],
                        'age_categories':[age_categories_encoded]},index=[0])
-    st.dataframe(input_features)
     if hasattr(model, 'feature_names_in_'):
         feature_names = model.feature_names_in_
     else:
@@ -198,7 +197,6 @@ savings account with a fixed term and interest rate.
 
     input_features = input_features[feature_names]
 
-    st.dataframe(input_features)
 
     st.markdown('***')
     st.subheader(body='Model Prediction')
