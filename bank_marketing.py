@@ -5,10 +5,10 @@ import numpy as np
 import time
 from sklearn.preprocessing import LabelEncoder
 import plotly.express as px
-df=pd.read_csv('bank2.csv')
+df=pd.read_csv('bank3.csv')
 
     
-with open(file='bank_model.pickle',mode='rb') as pickled_model:
+with open(file='bank_model3.pickle',mode='rb') as pickled_model:
     model=pickle.load(file=pickled_model)    
     
 st.dataframe(df)
@@ -167,7 +167,9 @@ savings account with a fixed term and interest rate.
     emp_var_rate = int(emp_var_rate)
     cons_price_idx = int(cons_price_idx)
     euribor_3m = float(euribor_3m)
-    
+    p_days=int(p_days)
+    cons_conf_idx=float(cons_conf_idx)
+    nr_employed=float(nr_employed)
     
     input_features = pd.DataFrame({'job':[job_encoded],
                        'marital':[marital_encoded],
@@ -189,7 +191,14 @@ savings account with a fixed term and interest rate.
                        'nr_employed':[nr_employed],
                        'age_categories':[age_categories_encoded]},index=[0])
     st.dataframe(input_features)
+    if hasattr(model, 'feature_names_in_'):
+        feature_names = model.feature_names_in_
+    else:
+        feature_names = df.columns.to_list()
 
+    input_features = input_features[feature_names]
+
+    st.dataframe(input_features)
 
     st.markdown('***')
     st.subheader(body='Model Prediction')
