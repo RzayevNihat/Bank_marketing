@@ -5,7 +5,7 @@ import numpy as np
 import time
 from sklearn.preprocessing import LabelEncoder
 import plotly.express as px
-df=pd.read_csv('Bank_marketing.csv')
+df=pd.read_csv('bank_marketing.csv')
 
     
 with open(file='bank_model_predictor.pickle',mode='rb') as pickled_model:
@@ -78,7 +78,6 @@ savings account with a fixed term and interest rate.
     """)
     st.markdown(body='***')
     st.markdown("### Whether the customer subscribed to a term deposit")
-    st.write(px.pie(data_frame=df,names='deposit'))
     st.markdown(body='***')
     st.subheader(body='Input Features')
     
@@ -195,7 +194,7 @@ savings account with a fixed term and interest rate.
                        'nr_employed':[nr_employed],
                        'age_categories':[age_categories_encoded],
                        'deposit': [0] },index=[0])
-    #input_features.drop('deposit', axis=1, inplace=True)
+
     if hasattr(model, 'feature_names_in_'):
         feature_names = model.feature_names_in_
     else:
