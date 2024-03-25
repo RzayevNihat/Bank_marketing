@@ -188,7 +188,7 @@ savings account with a fixed term and interest rate.
                        'euribor_3m':[euribor_3m],
                        'nr_employed':[nr_employed],
                        'age_categories':[age_categories_encoded]},index=[0])
-    
+    st.dataframe(input_features)
 
 
     st.markdown('***')
