@@ -77,8 +77,7 @@ subscribe to specific products, such as term deposits, which are a type of
 savings account with a fixed term and interest rate.
     """)
     st.markdown(body='***')
-    st.markdown("### Whether the customer subscribed to a term deposit")
-    st.markdown(body='***')
+
     st.subheader(body='Input Features')
     
     
