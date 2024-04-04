@@ -77,7 +77,8 @@ subscribe to specific products, such as term deposits, which are a type of
 savings account with a fixed term and interest rate.
     """)
     st.markdown(body='***')
-
+    st.markdown("### Whether the customer subscribed to a term deposit")
+    st.markdown(body='***')
     st.subheader(body='Input Features')
     
     
@@ -105,7 +106,7 @@ savings account with a fixed term and interest rate.
         day_of_week=st.selectbox(label='Last Contact Day',options=df['day_of_week'].str.capitalize().unique())
     
     with p_days:
-        p_days=st.selectbox(label='Contact Type',options=df['p_days'].unique())               
+        p_days=st.selectbox(label='Last Contact Days',options=df['p_days'].unique())               
                            
     
     with job:
@@ -226,7 +227,8 @@ with sidebar:
     st.markdown(body = '- **month** - The month of the year when the customer was last contacted (categorical)')
     st.markdown(body = '- **day_of_week** - Last contact day of the week (categorical)')
     st.markdown(body = '- **duration** - The duration of the last contact in seconds (numeric)')
-    st.markdown(body = '- **campaign** - The number of contacts performed during this campaign and for this customer (numeric)')                   
+    st.markdown(body = '- **campaign** - The number of contacts performed during this campaign and for this customer (numeric)')    
+    st.markdown(body = '- **pdays** - The number of days that passed by after the customer was last contacted from a previous campaign (numeric)')
     st.markdown(body = '- **previous** - The number of contacts performed before this campaign and for this customer (numeric)')
     st.markdown(body = '- **p_outcome** - The outcome of the previous marketing campaign (categorical)')
     st.markdown(body = '- **emp_var_rate** - Employment variation rate - quarterly indicator (numeric)')
